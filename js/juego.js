@@ -8,7 +8,7 @@ var altoF = 50;
 var muro = '#044f14';
 var puerta = '#3a1700';
 var tierra = '#c6892f';
-var llave = '#c6bc00';
+var flecha = '#c6bc00';
 
 var protagonista;
 
@@ -174,7 +174,7 @@ var jugador = function(){
   this.x = 1;
   this.y = 1;
   this.color = '#820c01';
-  this.llave = false;
+  this.flecha = false;
 
 
   this.dibuja = function(){
@@ -233,24 +233,24 @@ var jugador = function(){
 
 
   this.victoria = function(){
-    console.log('Has ganado!');
+    alert('Has ganado!');
 
     this.x = 1;
     this.y = 1;
 
-    this.llave = false;   //el jugador ya no tiene la llave
-    escenario[8][3] = 3;  //volvemos a poner la llave en su sitio
+    this.flecha = false;   //el jugador ya no tiene la flecha
+    escenario[8][3] = 3;  //volvemos a poner la flecha en su sitio
   }
 
 
   this.muerte = function(){
-    console.log('Has perdido!');
+    alert('Has perdido!');
 
     this.x = 1;
     this.y = 1;
 
-    this.llave = false;   //el jugador ya no tiene la llave
-    escenario[8][3] = 3;  //volvemos a poner la llave en su sitio
+    this.flecha = false;   //el jugador ya no tiene la flecha
+    escenario[8][3] = 3;  //volvemos a poner la flecha en su sitio
   }
 
 
@@ -259,21 +259,20 @@ var jugador = function(){
   this.logicaObjetos = function(){
     var objeto = escenario[this.y][this.x];
 
-    //OBTIENE llave
+    //OBTIENE flecha
     if(objeto == 3){
-      this.llave = true;
+      this.flecha = true;
       escenario[this.y][this.x]=2;
-      console.log('Has obtenido la llave!!');
     }
 
 
 
     //ABRIMOS LA PUERTA
     if(objeto == 1){
-      if(this.llave == true)
+      if(this.flecha == true)
         this.victoria();
       else{
-        console.log('No tienes la llave, no puedes pasar!');
+        alert('No tienes la flecha, no puedes pasar!');
       }
     }
 
